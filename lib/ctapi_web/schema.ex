@@ -17,6 +17,11 @@ defmodule CtapiWeb.Schema do
     field :all_trials, non_null(list_of(non_null(:trial))) do
       resolve(&TrialResolver.all_trials/3)
     end
+
+    @desc "Get trials based on age query"
+    field :trials_by_age, non_null(list_of(non_null(:trial)) do
+      resolve(&TrialResolver.trials_by_age/3)
+    end
   end
 
   mutation do

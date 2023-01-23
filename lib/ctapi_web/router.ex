@@ -12,6 +12,9 @@ defmodule CtapiWeb.Router do
       schema: CtapiWeb.Schema,
       interface: :playground,
       context: %{pubsub: CtapiWeb.Endpoint}
+
+    # The actual GraphQL endpoint.
+    forward "/", Absinthe.Plug, schema: CtapiWeb.Schema
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
