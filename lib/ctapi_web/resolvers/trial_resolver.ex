@@ -1,12 +1,8 @@
 defmodule CtapiWeb.TrialResolver do
   alias Ctapi.ClinicalTrial
 
-  def all_trials(root, args, info) do
-    {:ok, ClinicalTrial.list_trials()}
-  end
-
-  def trials_by_age(_root, _args, _info) do
-
+  def all_trials(_root, args, _info) do
+    {:ok, ClinicalTrial.list_trials(args)}
   end
 
   def create_trial(_root, args, _info) do

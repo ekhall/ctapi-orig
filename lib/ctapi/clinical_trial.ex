@@ -21,6 +21,35 @@ defmodule Ctapi.ClinicalTrial do
     Repo.all(Trial)
   end
 
+  def list_trials(args) do
+    query = from(p in Trial)
+    IO.inspect(binding(), label: "QUERY =>")
+
+    args
+    |> Enum.reduce(query, fn
+      {:age_ll, age_ll}, query ->
+        where(query, [q], q.age_ll == ^age_ll)
+
+      _, query ->
+        query
+    end)
+    |> Repo.all()
+  end
+
+  # def list_trials(args) do
+  #   query = from(p in Trial)
+
+  #   args
+  #   |> Enum.reduce(query, fn
+  #     {:age_ll, age_ll}, query ->
+  #       where(query, [q], q.age_ll == ^age_ll)
+
+  #     _, query ->
+  #       query
+  #   end)
+  #   |> Repo.all()
+  # end
+
   @doc """
   Gets a single trial.
 
